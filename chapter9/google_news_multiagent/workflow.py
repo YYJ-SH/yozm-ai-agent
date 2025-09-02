@@ -1,4 +1,4 @@
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.graph import StateGraph, END
 
 from state import NewsState
@@ -8,7 +8,7 @@ from agents.organizer import NewsOrganizerAgent
 from agents.reporter import ReportGeneratorAgent
 
 
-def create_news_workflow(llm: ChatOpenAI = None) -> StateGraph:
+def create_news_workflow(llm: ChatGoogleGenerativeAI | None = None) -> StateGraph:
     """뉴스 처리 워크플로우 생성 - RSS 수집 → AI 요약 → 카테고리 분류 → 보고서 생성"""
 
     # ① 각 작업을 담당할 4개의 전문 에이전트 인스턴스 생성

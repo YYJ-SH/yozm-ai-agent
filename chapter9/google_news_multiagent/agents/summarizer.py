@@ -1,6 +1,6 @@
 import asyncio
 from typing import Dict, Any
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -11,7 +11,7 @@ from config import Config
 class NewsSummarizerAgent:
     """뉴스를 요약하는 에이전트"""
 
-    def __init__(self, llm: ChatOpenAI):
+    def __init__(self, llm: ChatGoogleGenerativeAI):
         self.name = "News Summarizer"
         self.llm = llm
         # ① 튜플 형식의 메시지로 간결하게 프롬프트 템플릿 구성

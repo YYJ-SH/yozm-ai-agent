@@ -2,7 +2,7 @@
 import asyncio
 from typing import Dict, Any, Tuple
 from collections import defaultdict
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -13,7 +13,7 @@ from config import Config
 class NewsOrganizerAgent:
     """뉴스를 카테고리별로 정리하는 에이전트"""
 
-    def __init__(self, llm: ChatOpenAI):
+    def __init__(self, llm: ChatGoogleGenerativeAI):
         self.name = "News Organizer"
         self.llm = llm
         # '기타' 카테고리를 추가하여 예상치 못한 응답에 대비합니다.
