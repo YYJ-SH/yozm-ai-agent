@@ -3,7 +3,7 @@ import logging
 import asyncio
 from datetime import datetime
 from langchain_core.messages import HumanMessage
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 from workflow import create_news_workflow
 from config import Config
@@ -27,17 +27,17 @@ RSS 수집 → AI 요약 → 카테고리 분류 → 리포트 생성
     try:
         # ② 설정 유효성 검사 - API 키 존재 여부 확인
         if not Config.validate():
-            raise ValueError("API 키가 설정되지 않았습니다. .env 파일을 확인해주세요.")
+            raise ValueError("API 키가 설정되지 않았습니다.")
 
         print("\n" + "=" * 60)
         print("뉴스 처리 시작")
         print("=" * 60)
 
         # ③ LLM 및 워크플로우 초기화 - AI 모델과 처리 파이프라인 생성
-        llm = ChatOpenAI(
+        llm = ChatGoogleGenerativeAI(
             model=Config.MODEL_NAME,
-            max_tokens=Config.MAX_TOKENS,
-            api_key=Config.OPENAI_API_KEY,
+            max_output_tokens=Config.MAX_TOKENS,
+            google_api_key=Config.GEMINI_API_KEY,
         )
         app = create_news_workflow(llm)
 

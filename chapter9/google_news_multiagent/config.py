@@ -4,10 +4,10 @@ import os
 class Config:
     """프로젝트 설정 관리 클래스"""
 
-    # OpenAI 설정
-    # ① 환경변수에서 API 키를 가져오되, 없으면 빈 문자열을 기본값으로 사용
-    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
-    MODEL_NAME: str = "gpt-5-mini"
+    # Gemini 설정
+    # ① 환경변수 대신 하드코딩된 API 키 사용 (실서비스에서는 권장되지 않음)
+    GEMINI_API_KEY: str = "AIzaSyDelOP3X7cxK7B4wjV4WpOq7uRijNFZuVs"
+    MODEL_NAME: str = "gemini-1.5-flash"
     MAX_TOKENS: int = 150
 
     # ② 현재 파일의 위치를 기준으로 프로젝트 루트 디렉토리를 설정
@@ -42,8 +42,7 @@ class Config:
     @classmethod
     def validate(cls) -> bool:
         """설정 유효성 검사"""
-        if not cls.OPENAI_API_KEY:
-            print("OpenAI API 키가 설정되지 않았습니다.")
-            print("환경변수 OPENAI_API_KEY를 설정하거나 실행 시 입력하세요.")
+        if not cls.GEMINI_API_KEY:
+            print("Gemini API 키가 설정되지 않았습니다.")
             return False
         return True
